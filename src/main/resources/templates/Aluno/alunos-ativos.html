@@ -11,52 +11,53 @@
     <script src="https://kit.fontawesome.com/006642858d.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 </head>
-    <body>
-        <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+<body>
+    <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
 
-        <div class="container">
+    <div class="container">
         <h3>Últimos Alunos Adicionados</h3>
         <hr>
 
         <table class="table table-bordered table-hover">
-
-        <thead>
-            <th scope="col">Nome</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Matricula</th>
-            <th scope="col">Status</th>
-            <th scope="col">Turno</th>
-            <th scope="col">Ação</th>
-
-        </thead>
-        <tbody>
-            <tr scope="row" th:each="alunos : ${alunosAtivos}">
-
-                <td th:text="${alunos.nome}"></td>
-                <td th:text="${alunos.curso}"></td>
-                <td th:text="${alunos.matricula}"></td>
-                <td th:text="${alunos.status}"></td>
-                <td th:text="${alunos.turno}"></td>
-                <td>
-                 <a class="btn btn-primary" th:href="@{editar/{id}(id=${alunos.id})}">
-                 <i class="bi bi-pencil-square"></i> Editar</a>
-
-                 <a class="btn btn-danger" th:href="@{remover/{id}(id=${alunos.id})}">
-                 <i class="bi bi-x-square"></i> Remover</a>
-                </td>
-            </tr>
-        </tbody>
+            <thead>
+                <th scope="col">Nome</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Matricula</th>
+                <th scope="col">Status</th>
+                <th scope="col">Turno</th>
+                <th scope="col">Ação</th>
+            </thead>
+            <tbody>
+                <tr scope="row" th:each="aluno : ${alunosAtivos}">
+                    <td th:text="${aluno.nome}"></td>
+                    <td th:text="${aluno.curso}"></td>
+                    <td th:text="${aluno.matricula}"></td>
+                    <td th:text="${aluno.status}"></td>
+                    <td th:text="${aluno.turno}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{editar/{id}(id=${aluno.id})}">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a class="btn btn-danger" th:href="@{remover/{id}(id=${aluno.id})}">
+                            <i class="bi bi-x-square"></i> Remover
+                        </a>
+                        <a class="btn btn-warning" th:href="@{/Aluno/alunos-lancamento(id=${aluno.id})}">
+                            <i class="bi bi-journal-plus"></i> Lançar Nota
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
+    </div>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a class="btn btn-success" th:href="@{/gerar-pdf-alunos-ativos}">
+                <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
+            </a>
         </div>
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <a class="btn btn-success" th:href="@{/gerar-pdf-alunos-ativos}">
-                    <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
-                </a>
-            </div>
-            <hr>
-        </div>
-            <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-        <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    </body>
+        <hr>
+    </div>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
