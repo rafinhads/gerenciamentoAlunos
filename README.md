@@ -28,9 +28,6 @@ Uma aplicação web modelada no padrão MVC em Java e construída com o Spring B
 ### Entidade Aluno
 ![Entidade Aluno](https://user-images.githubusercontent.com/89096854/170030916-5c05c8c3-71d7-432e-aa6c-02b0ccf30409.PNG)
 
-### Entidade Usuário
-![Entidade Usuario](https://user-images.githubusercontent.com/89096854/170030921-8948e471-b0c1-4fcc-94aa-4bc94a554df9.PNG)
-
 ## Instalação
 
 O projeto é gerenciado pelo Maven, então para usa-lo basta importa-lo para uma IDE.
@@ -41,7 +38,7 @@ Você pode criar um banco de dados MySQL com o nome o nome de sua preferência, 
 ```
 - spring.datasource.url = jdbc:mysql://localhost:3306/nome-do-seu-banco-de-dados?useTimezone=true&serverTimezone=UTC
 - spring.datasource.username = root
-- spring.datasource.password = root
+- spring.datasource.password = 12345678
 ```
  
 
