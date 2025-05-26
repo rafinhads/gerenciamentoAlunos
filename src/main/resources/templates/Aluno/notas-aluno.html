@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas do Aluno</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h3 th:text="'Notas de ' + ${aluno.nome}"></h3>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Disciplina</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="nota : ${notas}">
+                <td th:text="${nota.disciplina}"></td>
+                <td th:text="${nota.valor}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-secondary" th:href="@{/alunos-ativos}">Voltar</a>
+</div>
+</body>
+</html>

@@ -44,6 +44,9 @@
                         <a class="btn btn-warning" th:href="@{/Aluno/alunos-lancamento(id=${aluno.id})}">
                             <i class="bi bi-journal-plus"></i> Lançar Nota
                         </a>
+                        <a class="btn btn-info" th:href="@{/aluno/{id}/notas(id=${aluno.id})}">
+                            <i class="bi bi-eye"></i> Ver Notas
+                        </a>
                     </td>
                 </tr>
             </tbody>

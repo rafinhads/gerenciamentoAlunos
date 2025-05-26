@@ -2,9 +2,12 @@
 package br.com.gerenciamento.service;
 
 import br.com.gerenciamento.model.Nota;
+import br.com.gerenciamento.model.Aluno;
 import br.com.gerenciamento.repository.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class NotaService {
@@ -14,5 +17,9 @@ public class NotaService {
 
     public Nota salvarNota(Nota nota) {
         return notaRepository.save(nota);
+    }
+
+    public List<Nota> buscarNotasPorAluno(Aluno aluno) {
+        return notaRepository.findByAluno(aluno);
     }
 }

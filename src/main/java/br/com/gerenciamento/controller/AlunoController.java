@@ -1,7 +1,9 @@
 package br.com.gerenciamento.controller;
 
 import br.com.gerenciamento.model.Aluno;
+import br.com.gerenciamento.model.Nota;
 import br.com.gerenciamento.service.AlunoService;
+import br.com.gerenciamento.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class AlunoController {
 
     @Autowired
     private AlunoService alunoService;
+
+    @Autowired
+    private NotaService notaService;
 
     @GetMapping("/inserirAlunos")
     public ModelAndView insertAlunos(Aluno aluno) {
@@ -111,5 +116,19 @@ public class AlunoController {
     public String exibirLancamentoNota(@RequestParam("id") Long id, Model model) {
         model.addAttribute("alunoId", id);
         return "Aluno/alunos-lancamento";
+    }
+
+    @GetMapping("/aluno/{id}/notas")
+    public String visualizarNotasAluno(@PathVariable("id") Long id, Model model) {
+        Optional<Aluno> alunoOpt = alunoService.buscarPorId(id);
+        if (alunoOpt.isPresent()) {
+            Aluno aluno = alunoOpt.get();
+            List<Nota> notas = notaService.buscarNotasPorAluno(aluno);
+            model.addAttribute("aluno", aluno);
+            model.addAttribute("notas", notas);
+            return "Aluno/notas-aluno";
+        } else {
+            return "redirect:/alunos-ativos";
+        }
     }
 }
