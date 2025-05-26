@@ -16,10 +16,6 @@ Uma aplicação web modelada no padrão MVC em Java e construída com o Spring B
 - Bootstrap
 - MySQL
 
-## Demonstração
-
-![demo](https://user-images.githubusercontent.com/89096854/170026187-57aa04f4-189b-4c00-8cc8-16a1227a5eb7.gif)
-
 ### Formulário de Cadastro
 ![formulario de cadastro](https://user-images.githubusercontent.com/89096854/170031976-645e9bd8-eaca-4a84-805c-588100e1a770.PNG)
 
