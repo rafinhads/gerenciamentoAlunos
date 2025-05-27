@@ -20,17 +20,17 @@
     <div class="center neo-container">
         <h1 class="texto-centro">Sistema de Gerenciamento de Alunos</h1>
 
-    <div class="botoes">
+        <div class="botoes-container">
+            <a th:href="@{inserirAlunos}" class="btn-index">CADASTRAR ALUNO</a>
 
-    <div class="wm">
-        <a th:href="@{inserirAlunos}" class="btn-index">CADASTRAR ALUNO</a>
-    </div>
+            <a th:href="@{/dashboard}" class="btn-index">
+                <i class="bi bi-bar-chart"></i> IR PARA DASHBOARD
+            </a>
 
-    <div class="wm">
-        <a th:href="@{filtro-alunos}" class="btn-index justify-content-center">ENCONTRAR ALUNO</a>
-    </div>
+            <a th:href="@{filtro-alunos}" class="btn-index">ENCONTRAR ALUNO</a>
+        </div>
 
-    <div class="clear"></div>
+        <div class="clear"></div>
         </div>
     </div>
     </section>
