@@ -3,60 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <title>Sistema de Gerenciamento de Alunos</title>
-    <meta name="author" content="Rafael Dias">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/006642858d.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <style>
+        .home-bg {
+            background: url('img/bg-index.jpg') center/cover no-repeat;
+            min-height: 100vh;
+            position: relative;
+        }
+        .home-overlay {
+            background: rgba(0,0,0,0.7);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .home-content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .home-title {
+            color: #fff;
+            font-size: 2.8em;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 8px #000;
+        }
+        .card-modern-home {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            border-radius: 16px;
+            background: #fff;
+            padding: 32px 24px;
+            margin-bottom: 32px;
+            min-width: 320px;
+            max-width: 400px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card-modern-home:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .btn-home {
+            width: 100%;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .home-title { font-size: 2em; }
+            .card-modern-home { min-width: 90vw; }
+        }
+    </style>
 </head>
 <body>
-
-    <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
-    <section class="neo-section" style="background-image: url('img/bg-index.jpg');">
-    <div class="sombra"></div>
-
-    <div class="center neo-container">
-        <h1 class="texto-centro">Sistema de Gerenciamento de Alunos</h1>
-
-        <div class="botoes-container">
-            <a th:href="@{inserirAlunos}" class="btn-index">CADASTRAR ALUNO</a>
-
-            <a th:href="@{/dashboard}" class="btn-index">
-                <i class="bi bi-bar-chart"></i> IR PARA DASHBOARD
-            </a>
-
-            <a th:href="@{filtro-alunos}" class="btn-index">ENCONTRAR ALUNO</a>
-        </div>
-
-        <div class="clear"></div>
-        </div>
-    </div>
-    </section>
-
-    <!-- Inicio do Modal -->
-    <div class="modal fade" id="modalPesquisa">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <h5 class="modal-title">Encontre um Aluno</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
+    <div class="home-bg">
+        <div class="home-overlay"></div>
+        <div class="home-content">
+            <h1 class="home-title">Sistema de Gerenciamento de Alunos</h1>
+            <div class="card-modern-home">
+                <a th:href="@{inserirAlunos}" class="btn btn-success btn-home mb-2">
+                    <i class="bi bi-person-plus"></i> Cadastrar Aluno
+                </a>
+                <a th:href="@{/dashboard}" class="btn btn-primary btn-home mb-2">
+                    <i class="bi bi-bar-chart"></i> Ir para Dashboard
+                </a>
+                <a th:href="@{filtro-alunos}" class="btn btn-info btn-home mb-2">
+                    <i class="bi bi-search"></i> Encontrar Aluno
+                </a>
+                <form th:action="@{/logout}" method="post" style="margin:0;">
+                    <button type="submit" class="btn btn-outline-dark btn-home" style="width:100%;">
+                        <i class="bi bi-box-arrow-right"></i> Sair
                     </button>
-                </div>
-
-                <form method="post" action="pesquisar-aluno" th:object="${aluno}">
-
-                <div class="modal-body">
-                    <input type="text" placeholder="Digite o nome do Aluno" th:field="*{nome}">
-                </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-success">Pesquisar</button>
-                    </div>
-
                 </form>
             </div>
         </div>
@@ -66,4 +91,3 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-

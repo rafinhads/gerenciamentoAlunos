@@ -1,32 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lançar Nota</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        form { max-width: 400px; margin: auto; }
-        label { display: block; margin-top: 15px; }
-        input, button { width: 100%; padding: 8px; margin-top: 5px; }
-        button { background: #28a745; color: #fff; border: none; margin-top: 20px; }
-        button:hover { background: #218838; }
+        body, html {
+            height: 100%;
+            background: #f7f9fa;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nota-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 36px 28px;
+            min-width: 320px;
+            max-width: 370px;
+            width: 100%;
+        }
+        .nota-title {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+        .form-control {
+            border-radius: 10px;
+            font-size: 1em;
+        }
+        .input-group-text {
+            border-radius: 10px 0 0 10px;
+        }
+        .btn-success {
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 18px;
+        }
+        .btn-outline-secondary {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        label {
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 4px;
+        }
     </style>
 </head>
 <body>
-    <h2>Lançar Nota</h2>
-    <form id="notaForm">
-        <label for="alunoId">ID do Aluno:</label>
-        <input type="text" id="alunoId" name="alunoId" required>
-
-        <label for="valor">Valor:</label>
-        <input type="number" id="valor" name="valor" step="0.01" required>
-
-        <label for="disciplina">Disciplina:</label>
-        <input type="text" id="disciplina" name="disciplina" required>
-
-        <button type="submit">Lançar Nota</button>
-    </form>
-
+    <div class="nota-card">
+        <div class="nota-title">Lançar Nota</div>
+        <form id="notaForm">
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                <input type="text" class="form-control" id="alunoId" name="alunoId" placeholder="ID do Aluno" required>
+            </div>
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-123"></i></span>
+                <input type="number" class="form-control" id="valor" name="valor" placeholder="Nota" step="0.01" required>
+            </div>
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-journal-text"></i></span>
+                <input type="text" class="form-control" id="disciplina" name="disciplina" placeholder="Disciplina" required>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Lançar Nota
+            </button>
+            <a th:href="@{/alunos-adicionados}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+        </form>
+    </div>
     <script>
         // Preenche o campo alunoId se vier na URL
         window.onload = function() {
@@ -63,5 +118,6 @@
             }
         });
     </script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -51,8 +51,13 @@ public class UsuarioController {
     }
 
     @PostMapping("/salvarUsuario")
-    public ModelAndView cadastrar(Usuario usuario) throws Exception {
+    public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult br) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
+        if (br.hasErrors()) {
+            modelAndView.setViewName("login/cadastro");
+            modelAndView.addObject("usuario", usuario);
+            return modelAndView;
+        }
         serviceUsuario.salvarUsuario(usuario);
         modelAndView.setViewName("redirect:/");
         return modelAndView;
@@ -63,13 +68,15 @@ public class UsuarioController {
                               HttpSession session) throws NoSuchAlgorithmException, ServiceExc {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("usuario", new Usuario());
-        if(br.hasErrors()) {
+        if (br.hasErrors()) {
             modelAndView.setViewName("login/login");
+            return modelAndView;
         }
 
         Usuario userLogin = serviceUsuario.loginUser(usuario.getUser(), Util.md5(usuario.getSenha()));
-        if(userLogin == null) {
-            modelAndView.addObject("msg","Usuario não encontrado. Tente novamente");
+        if (userLogin == null) {
+            modelAndView.addObject("msg", "Usuario não encontrado. Tente novamente");
+            modelAndView.setViewName("login/login");
         } else {
             session.setAttribute("usuarioLogado", userLogin);
             return index();

@@ -11,10 +11,13 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Email
     private String email;
+
     @Size(min = 3, max = 20, message = "O usuário precisa conter entre 3 a 20 caracteres")
     private String user;
+
     private String senha;
 
     public Long getId() {
@@ -37,8 +40,8 @@ public class Usuario {
         return user;
     }
 
-    public void setUser(String usuario) {
-        this.user = usuario;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getSenha() {
