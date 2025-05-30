@@ -1,7 +1,15 @@
 function GerarMatricula() {
-    var txt = "ACA";
-    var aleatorio = Math.floor(Math.random() * 999);
-    const date = new Date();
-    var data = date.getFullYear();
-    document.getElementById('matricula').value = (txt + data + aleatorio);
+    const cursoSelecionado = document.getElementById("curso").value;
+    const iniciais = {
+        "Informatica": "INF",
+        "Direito": "DIR",
+        "Enfermagem": "ENF"
+    };
+
+    const inicialCurso = iniciais[cursoSelecionado] || "UNK";
+    const ano = new Date().getFullYear();
+    const aleatorio = Math.floor(100 + Math.random() * 900);
+
+    const matricula = inicialCurso + "ACA" + ano + aleatorio;
+    document.getElementById("matricula").value = matricula;
 }

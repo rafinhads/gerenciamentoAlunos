@@ -131,4 +131,32 @@ public class AlunoController {
             return "redirect:/alunos-ativos";
         }
     }
+
+    @GetMapping("/alunos/curso/ativos")
+    public String alunosAtivosPorCurso(@RequestParam("nome") String nome, Model model) {
+        List<Aluno> alunosAtivos = alunoService.buscarPorCursoEStatus(nome, "ATIVO");
+        model.addAttribute("alunos", alunosAtivos);
+        model.addAttribute("curso", nome);
+        return "Aluno/listaAlunos";
+    }
+
+    @GetMapping("/alunos/curso")
+    public String alunosPorCurso(
+            @RequestParam("nome") String nome,
+            @RequestParam("status") String status,
+            Model model
+    ) {
+        List<Aluno> alunos = alunoService.buscarPorCursoEStatus(nome, status);
+        model.addAttribute("alunos", alunos);
+        model.addAttribute("curso", nome);
+        model.addAttribute("status", status);
+        return "Aluno/listaAlunos";
+    }
+
+    @GetMapping("/alunos/editar/{id}")
+    public String editarAluno(@PathVariable Long id, Model model) {
+        Optional<Aluno> alunoOpt = alunoService.buscarPorId(id);
+        model.addAttribute("aluno", alunoOpt.orElse(new Aluno()));
+        return "Aluno/editarAluno";
+    }
 }

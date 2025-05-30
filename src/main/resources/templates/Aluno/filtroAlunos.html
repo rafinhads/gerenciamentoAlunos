@@ -83,15 +83,15 @@
                 <p class="card-text">Filtre alunos por curso e status.</p>
                 <div class="status-label text-success">Ativos:</div>
                 <div class="btn-group-custom mb-2">
-                    <a th:href="@{/alunos/curso?nome=INFORMATICA&status=ATIVO}" class="btn btn-outline-success">Informática</a>
-                    <a th:href="@{/alunos/curso?nome=DIREITO&status=ATIVO}" class="btn btn-outline-success">Direito</a>
-                    <a th:href="@{/alunos/curso?nome=ENFERMAGEM&status=ATIVO}" class="btn btn-outline-success">Enfermagem</a>
+                    <a th:href="@{/alunos/curso(nome='INFORMATICA',status='ATIVO')}" class="btn btn-outline-success">Informática</a>
+                    <a th:href="@{/alunos/curso(nome='DIREITO',status='ATIVO')}" class="btn btn-outline-success">Direito</a>
+                    <a th:href="@{/alunos/curso(nome='ENFERMAGEM',status='ATIVO')}" class="btn btn-outline-success">Enfermagem</a>
                 </div>
                 <div class="status-label text-danger">Inativos:</div>
                 <div class="btn-group-custom">
-                    <a th:href="@{/alunos/curso?nome=INFORMATICA&status=INATIVO}" class="btn btn-outline-danger">Informática</a>
-                    <a th:href="@{/alunos/curso?nome=DIREITO&status=INATIVO}" class="btn btn-outline-danger">Direito</a>
-                    <a th:href="@{/alunos/curso?nome=ENFERMAGEM&status=INATIVO}" class="btn btn-outline-danger">Enfermagem</a>
+                    <a th:href="@{/alunos/curso(nome='INFORMATICA',status='INATIVO')}" class="btn btn-outline-danger">Informática</a>
+                    <a th:href="@{/alunos/curso(nome='DIREITO',status='INATIVO')}" class="btn btn-outline-danger">Direito</a>
+                    <a th:href="@{/alunos/curso(nome='ENFERMAGEM',status='INATIVO')}" class="btn btn-outline-danger">Enfermagem</a>
                 </div>
             </div>
         </div>
