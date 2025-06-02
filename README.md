@@ -1,10 +1,20 @@
 <img src="https://img.shields.io/badge/STATUS-CONCLUÍDO-green"/>
 
-# Projeto CRUD Spring Boot
+# Sistema de Gerenciamento de Alunos
 
 ## Sobre o Projeto:
 
-Uma aplicação web modelada no padrão MVC em Java e construída com o Spring Boot, o projeto conta com uma estrutura de CRUD, no qual os dados estão sendo persistidos em um banco de dados (MySQL). Na camada de visualização foi utilizado HTML, CSS, o framework Bootstrap e o template Thymeleaf.  Também foi utilizado o JavaScript para validação de uma regra de negócio. O sistema possui outras funcionalidades como, tela de login/cadastro, criptografia de dados do usuário, entre outras.
+Este projeto é uma aplicação web desenvolvida em Java utilizando o framework Spring Boot, seguindo o padrão MVC. O sistema permite realizar operações de CRUD (Criar, Ler, Atualizar e Deletar) para gerenciar informações de alunos, com persistência de dados em um banco de dados MySQL.
+
+## Funcionalidades
+
+- Cadastro de novos alunos
+- Listagem de alunos cadastrados
+- Edição de informações dos alunos
+- Remoção de alunos do sistema
+- Tela de login e cadastro de usuários
+- Criptografia de dados dos usuários
+- Validação de regras de negócio com JavaScript
  
 ## Tecnologias Utilizadas
 
@@ -15,6 +25,18 @@ Uma aplicação web modelada no padrão MVC em Java e construída com o Spring B
 - HTML/CSS/JS
 - Bootstrap
 - MySQL
+- Thymeleaf
+
+## Estrutura do Projeto
+
+O projeto segue a arquitetura MVC (Model-View-Controller), com as seguintes camadas:
+
+- Model: Contém as entidades JPA que representam as tabelas do banco de dados.
+- Repository: Interfaces que estendem JpaRepository para acesso aos dados.
+- Service: Contém a lógica de negócio da aplicação.
+- Controller: Gerencia as requisições HTTP e interage com a camada de serviço.
+- View: Templates HTML utilizando Thymeleaf para renderização das páginas.
+
 
 ## Instalação
 
