@@ -28,62 +28,68 @@
     </style>
 </head>
 <body>
-    <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
-    <div class="container mt-5">
-        <div class="card card-modern">
-            <div class="card-header bg-success text-white d-flex align-items-center">
-                <i class="bi bi-people-fill me-2" style="font-size: 1.5em;"></i>
-                <h4 class="mb-0">Alunos Ativos</h4>
+<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+<div class="container mt-5">
+    <!-- Mensagens de alerta -->
+    <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+    <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+
+    <div class="card card-modern">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <i class="bi bi-people-fill me-2" style="font-size: 1.5em;"></i>
+            <h4 class="mb-0">Alunos Ativos</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Curso</th>
+                        <th>Matrícula</th>
+                        <th>Status</th>
+                        <th>Turno</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="aluno : ${alunosAtivos}">
+                        <td th:text="${aluno.nome}"></td>
+                        <td th:text="${aluno.curso}"></td>
+                        <td th:text="${aluno.matricula}"></td>
+                        <td>
+                            <span class="badge bg-success" th:text="${aluno.status}"></span>
+                        </td>
+                        <td th:text="${aluno.turno}"></td>
+                        <td>
+                            <a class="btn btn-primary btn-action" th:href="@{editar/{id}(id=${aluno.id})}">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <form th:action="@{alunos/remover/{id}(id=${aluno.id})}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-action" onclick="return confirm('Tem certeza que deseja remover este aluno?');">
+                                    <i class="bi bi-x-square"></i>
+                                </button>
+                            </form>
+                            <a class="btn btn-warning btn-action" th:href="@{/Aluno/alunos-lancamento(id=${aluno.id})}">
+                                <i class="bi bi-journal-plus"></i>
+                            </a>
+                            <a class="btn btn-info btn-action" th:href="@{/aluno/{id}/notas(id=${aluno.id})}">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Curso</th>
-                                <th>Matrícula</th>
-                                <th>Status</th>
-                                <th>Turno</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="aluno : ${alunosAtivos}">
-                                <td th:text="${aluno.nome}"></td>
-                                <td th:text="${aluno.curso}"></td>
-                                <td th:text="${aluno.matricula}"></td>
-                                <td>
-                                    <span class="badge bg-success" th:text="${aluno.status}"></span>
-                                </td>
-                                <td th:text="${aluno.turno}"></td>
-                                <td>
-                                    <a class="btn btn-primary btn-action" th:href="@{editar/{id}(id=${aluno.id})}">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-action" th:href="@{remover/{id}(id=${aluno.id})}">
-                                        <i class="bi bi-x-square"></i>
-                                    </a>
-                                    <a class="btn btn-warning btn-action" th:href="@{/Aluno/alunos-lancamento(id=${aluno.id})}">
-                                        <i class="bi bi-journal-plus"></i>
-                                    </a>
-                                    <a class="btn btn-info btn-action" th:href="@{/aluno/{id}/notas(id=${aluno.id})}">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="d-flex justify-content-end mt-3">
-                    <a class="btn btn-outline-danger" th:href="@{/gerar-pdf-alunos-ativos}">
-                        <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
-                    </a>
-                </div>
+            <div class="d-flex justify-content-end mt-3">
+                <a class="btn btn-outline-danger" th:href="@{/gerar-pdf-alunos-ativos}">
+                    <i class="bi bi-file-earmark-pdf"></i> Gerar PDF
+                </a>
             </div>
         </div>
     </div>
-    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

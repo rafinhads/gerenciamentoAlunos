@@ -89,6 +89,14 @@
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                     <input type="password" class="form-control" th:field="*{senha}" placeholder="Senha" required>
                 </div>
+                <div class="mb-3">
+                    <label for="tipo_usuario" class="form-label">Tipo de Usuário</label>
+                    <select id="tipo_usuario" name="tipoUsuario" class="form-control" required>
+                        <option value="ADMIN">Admin</option>
+                        <option value="ALUNO">Aluno</option>
+                        <option value="PROFESSOR">Professor</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-success btn-cadastro">
                     <i class="bi bi-person-plus"></i> Cadastrar
                 </button>

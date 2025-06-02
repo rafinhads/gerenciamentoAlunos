@@ -1,9 +1,9 @@
 function GerarMatricula() {
     const cursoSelecionado = document.getElementById("curso").value;
     const iniciais = {
-        "Informatica": "INF",
-        "Direito": "DIR",
-        "Enfermagem": "ENF"
+        "INFORMATICA": "INF",
+        "DIREITO": "DIR",
+        "ENFERMAGEM": "ENF"
     };
 
     const inicialCurso = iniciais[cursoSelecionado] || "UNK";

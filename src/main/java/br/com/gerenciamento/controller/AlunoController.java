@@ -5,11 +5,13 @@ import br.com.gerenciamento.model.Nota;
 import br.com.gerenciamento.service.AlunoService;
 import br.com.gerenciamento.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -74,6 +76,17 @@ public class AlunoController {
     public String removerAluno(@PathVariable("id") Long id) {
         alunoService.removerPorId(id);
         return "redirect:/alunos-adicionados";
+    }
+
+    @PostMapping("/alunos/remover/{id}")
+    public String removerAluno(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            alunoService.removerPorId(id);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Aluno removido com sucesso!");
+        } catch (DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Não é possível remover o aluno porque existem notas lançadas para ele.");
+        }
+        return "redirect:/alunos";
     }
 
     @GetMapping("filtro-alunos")

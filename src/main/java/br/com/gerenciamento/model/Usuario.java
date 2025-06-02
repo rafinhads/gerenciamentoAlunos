@@ -20,6 +20,9 @@ public class Usuario {
 
     private String senha;
 
+    @Column(name = "tipo_usuario", nullable = false)
+    private String tipoUsuario;
+
     public Long getId() {
         return id;
     }
@@ -50,5 +53,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }
