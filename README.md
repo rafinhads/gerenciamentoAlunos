@@ -1,5 +1,3 @@
-<img src="https://img.shields.io/badge/STATUS-CONCLUÍDO-green"/>
-
 # Sistema de Gerenciamento de Alunos
 
 ## Sobre o Projeto:
