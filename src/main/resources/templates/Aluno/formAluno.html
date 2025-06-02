@@ -21,22 +21,29 @@
                     <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Ex: João da Silva" required>
                     <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                 </div>
+
+                <!-- Novo campo de curso com geração de matrícula -->
                 <div class="mb-3">
                     <label for="curso" class="form-label">Curso</label>
-                    <select class="form-select" id="curso" th:field="*{curso}" required>
-                        <option th:each="curso : ${T(br.com.gerenciamento.enums.Curso).values()}"
-                                th:value="${curso}" th:text="${curso}"></option>
+                    <select class="form-select" id="curso" name="curso" th:field="*{curso}" onchange="GerarMatricula()" required>
+                        <option value="">Selecione o curso</option>
+                        <option value="Informatica">Informática</option>
+                        <option value="Direito">Direito</option>
+                        <option value="Enfermagem">Enfermagem</option>
                     </select>
                     <div class="text-danger" th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}"></div>
                 </div>
+
+                <!-- Campo de matrícula atualizado -->
                 <div class="mb-3">
                     <label for="matricula" class="form-label">Matrícula</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="matricula" th:field="*{matricula}" required>
+                        <input type="text" class="form-control" id="matricula" name="matricula" th:field="*{matricula}" readonly required>
                         <button type="button" class="btn btn-outline-secondary" onclick="GerarMatricula()">Gerar</button>
                     </div>
                     <div class="text-danger" th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></div>
                 </div>
+
                 <div class="mb-3">
                     <label for="turno" class="form-label">Turno</label>
                     <select class="form-select" id="turno" th:field="*{turno}" required>
